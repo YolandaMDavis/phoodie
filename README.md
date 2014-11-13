@@ -1,4 +1,4 @@
-servfocus
+phoodie
 =========
 
-POC for grails, spring integration, mongo db, data analysis project focused on helping identify gaps in valuable community services.
+POC for node.js and mongo with web/mobile friendly front end (full stack js)
