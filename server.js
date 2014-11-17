@@ -10,6 +10,7 @@ var bodyParser = require('body-parser');
 var mongoose   = require('mongoose');   //call mongodb
 var Food       = require('./models/food');
 var FoodNutrition  = require('./models/food_nutrition');
+var FoodGroup  = require('./models/food_group');
 var Nutrients       = require('./models/nutrients');
 
 // configure app to use bodyParser()
@@ -46,6 +47,35 @@ router.route('/food/:food_id')
     
 });
 
+router.route('/group/:fgrp_cd')
+.get(function(req,res){
+    
+    FoodGroup.findById(req.params.fgrp_cd, function(err,group){
+        if(err){
+            res.send(err);
+        }
+        else{
+            res.json(group);
+        }
+    });
+    
+});
+
+router.route('/groups')
+.get(function(req,res){
+    
+    var query  = FoodGroup.find({});
+    query.exec(function(err,group){
+        if(err){
+            res.send(err);
+        }
+        else{
+            res.json(group);
+        }
+    });
+    
+});
+
 router.route('/food/group/:fdgrp_cd')
 .get(function(req,res){
     
@@ -59,6 +89,7 @@ router.route('/food/group/:fdgrp_cd')
     });
     
 });
+
 
 router.route('/food/desc/:shrt_desc')
 .get(function(req,res){
